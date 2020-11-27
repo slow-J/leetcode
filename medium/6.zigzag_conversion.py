@@ -4,22 +4,22 @@ class Solution:
         if numRows == 1:
             return s
 
-        next_col = 0
+        next_row = 0
         down = True
-        list_2d = [list() for elem in range(numRows)]
+        strings_list = [""] * numRows
 
         for char in s:
             if down:
-                list_2d[next_col].append(char)
-                if next_col < numRows:
-                    next_col += 1
-                if next_col == numRows - 1:
+                strings_list[next_row] += char
+                if next_row < numRows:
+                    next_row += 1
+                if next_row == numRows - 1:
                     down = False
             else:
-                list_2d[next_col].append(char)
-                if next_col > 0:
-                    next_col -= 1
-                if next_col == 0:
+                strings_list[next_row] += char
+                if next_row > 0:
+                    next_row -= 1
+                if next_row == 0:
                     down = True
 
-        return (''.join(item for inner_list in list_2d for item in inner_list))
+        return (''.join(strings_list))
