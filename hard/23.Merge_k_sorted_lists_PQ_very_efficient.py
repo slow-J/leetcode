@@ -13,13 +13,11 @@ class Solution(object):
         """
         if lists == []:
             return None
-        # lists = list(filter(None, lists))
         q = Q.PriorityQueue()
         for node in lists:
             while node is not None:
                 q.put(node.val)
                 node = node.next
-        # q.put(x.val) for x in list for list in lists
         dummy_node = ll_node = ListNode(0)
         while not q.empty():
             ll_node.next = ListNode(q.get())
