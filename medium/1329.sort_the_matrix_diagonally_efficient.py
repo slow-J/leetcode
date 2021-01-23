@@ -4,26 +4,28 @@ class Solution(object):
         :type mat: List[List[int]]
         :rtype: List[List[int]]
         """
-        down = len(mat)
-        right = len(mat[0])
+        numrows = len(mat)
+        numcols = len(mat[0])
 
-        for x in range(right):
-            for y in range(down):
+        for x in range(numcols):
+            for y in range(numrows):
                 if x == 0 or y == 0:
                     tmp_y = y
                     tmp_x = x
+
                     # Get the diagonal.
                     new_diagonal = []
-                    while tmp_y < down and tmp_x < right:
+                    while tmp_y < numrows and tmp_x < numcols:
                         new_diagonal.append(mat[tmp_y][tmp_x])
                         tmp_y += 1
                         tmp_x += 1
+
                     # Sort and replace.
                     new_diagonal.sort()
                     tmp_y = y
                     tmp_x = x
                     i = 0
-                    while tmp_y < down and tmp_x < right:
+                    while tmp_y < numrows and tmp_x < numcols:
                         mat[tmp_y][tmp_x] = new_diagonal[i]
                         i += 1
                         tmp_y += 1
