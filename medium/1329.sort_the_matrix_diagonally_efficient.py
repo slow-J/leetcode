@@ -12,11 +12,13 @@ class Solution(object):
                 if x == 0 or y == 0:
                     tmp_y = y
                     tmp_x = x
+                    # Get the diagonal.
                     new_diagonal = []
                     while tmp_y < down and tmp_x < right:
                         new_diagonal.append(mat[tmp_y][tmp_x])
                         tmp_y += 1
                         tmp_x += 1
+                    # Sort and replace.
                     new_diagonal.sort()
                     tmp_y = y
                     tmp_x = x
