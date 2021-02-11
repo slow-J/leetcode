@@ -1,4 +1,4 @@
-# leetcode
+# leetcode or similar
 
 https://leetcode.com/slow-J1
 
