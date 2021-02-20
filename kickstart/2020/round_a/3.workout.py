@@ -1,9 +1,11 @@
 # WIP, passes only first test case :(
+# V2: much more efficient, but still TLE for test set 2
 def get_diffs_and_max(exercise_mins):
     diffs = {}
     max = 0
-    prev = exercise_mins[0]
+    prev = int(exercise_mins[0])
     for mins in exercise_mins[1:]:
+        mins = int(mins)
         diff = mins - prev
         if diff in diffs:
             diffs[diff] += 1
@@ -24,43 +26,26 @@ def main():
         K = int(K)
         # M
         exercise_mins = input().split(" ")
-        exercise_mins = [int(x) for x in exercise_mins]
-
         diffs, max_key = get_diffs_and_max(exercise_mins)
 
         while K > 0 and diffs:
+            if max_key <= 1:
+                break
             occurances = diffs[max_key]
-            del diffs[max_key]
-            # scnd_max_key = max(diffs)
             K -= occurances
             if K >= 0:
-                prev, prev_pos = exercise_mins[0], 0
-                for i2, current_exercise in enumerate(exercise_mins[1:]):
-                    if current_exercise - prev == max_key:
-                        mid_val = current_exercise - (current_exercise - prev) // 2
-                        exercise_mins.insert(prev_pos + 1, mid_val)
-
-                        # New diffs, left
-                        left_diff = mid_val - prev
-                        if left_diff in diffs:
-                            diffs[left_diff] += 1
-                        else:
-                            diffs[left_diff] = 1
-                        # New diffs, right
-                        right_diff = current_exercise - mid_val
-                        if right_diff in diffs:
-                            diffs[right_diff] += 1
-                        else:
-                            diffs[right_diff] = 1
-
-                        i2 += 1
-                        occurances -= 1
-                        if occurances == 0:
-                            break
-                        prev_pos = prev_pos + 1
-                        prev = mid_val
-                    else:
-                        prev, prev_pos = current_exercise, i2 + 1
+                del diffs[max_key]
+                left_diff = max_key // 2
+                if left_diff in diffs:
+                    diffs[left_diff] += occurances
+                else:
+                    diffs[left_diff] = occurances
+                # New diffs, right
+                right_diff = max_key - left_diff
+                if right_diff in diffs:
+                    diffs[right_diff] += occurances
+                else:
+                    diffs[right_diff] = occurances
 
                 max_key = max(diffs)
 
