@@ -2,22 +2,31 @@
 
 
 class Solution1:
-    """Quicksort.
-    Runtime: 276 ms, faster than 65.75%.
-    Memory Usage: 20.2 MB, less than 20.71%."""
+    """Trivial Quicksort-like implementation.
+    Runtime: 232 ms, faster than 80.16%.
+    Memory Usage: 21.3 MB, less than 25.51%."""
 
-    def sortArray(self, nums: List[int]) -> List[int]:
-        list_len = len(nums)
-        if list_len < 2:
-            return nums
+    class Solution:
+        def sortArray(self, nums: List[int]) -> List[int]:
+            list_len = len(nums)
+            if list_len < 2:
+                return nums
 
-        # Choose pivot
-        # pivot = nums[list_len//2]
-        pivot = nums[0]
-        pivots = [num for num in nums if num == pivot]
-        less = [num for num in nums if num < pivot]
-        more = [num for num in nums if num > pivot]
-        return self.sortArray(less) + pivots + self.sortArray(more)
+            # Choose pivot
+            # pivot = nums[list_len//2]
+            pivot = nums[0]
+
+            pivots = []
+            less = []
+            more = []
+            for num in nums:
+                if num < pivot:
+                    less.append(num)
+                elif num == pivot:
+                    pivots.append(num)
+                else:
+                    more.append(num)
+            return self.sortArray(less) + pivots + self.sortArray(more)
 
 
 class Solution2:
