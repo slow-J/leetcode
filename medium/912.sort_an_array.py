@@ -1,4 +1,5 @@
 # 2 ways: implementing quicksort and using built in sorted().
+from random import choice
 
 
 class Solution1:
@@ -11,9 +12,8 @@ class Solution1:
         if list_len < 2:
             return nums
 
-        # Choose pivot
-        # pivot = nums[list_len//2]
-        pivot = nums[0]
+        # If pivot is random, quicksort is O(nlogn) on average.
+        pivot = choice(nums)
 
         pivots = []
         less = []
