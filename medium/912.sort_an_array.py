@@ -6,27 +6,26 @@ class Solution1:
     Runtime: 232 ms, faster than 80.16%.
     Memory Usage: 21.3 MB, less than 25.51%."""
 
-    class Solution:
-        def sortArray(self, nums: List[int]) -> List[int]:
-            list_len = len(nums)
-            if list_len < 2:
-                return nums
+    def sortArray(self, nums: List[int]) -> List[int]:
+        list_len = len(nums)
+        if list_len < 2:
+            return nums
 
-            # Choose pivot
-            # pivot = nums[list_len//2]
-            pivot = nums[0]
+        # Choose pivot
+        # pivot = nums[list_len//2]
+        pivot = nums[0]
 
-            pivots = []
-            less = []
-            more = []
-            for num in nums:
-                if num < pivot:
-                    less.append(num)
-                elif num == pivot:
-                    pivots.append(num)
-                else:
-                    more.append(num)
-            return self.sortArray(less) + pivots + self.sortArray(more)
+        pivots = []
+        less = []
+        more = []
+        for num in nums:
+            if num < pivot:
+                less.append(num)
+            elif num == pivot:
+                pivots.append(num)
+            else:
+                more.append(num)
+        return self.sortArray(less) + pivots + self.sortArray(more)
 
 
 class Solution2:
