@@ -7,7 +7,7 @@
 class Solution:
     """Iterative BFS with 1 queue of tuples.
     Runtime: 32 ms, faster than 99.79%
-    Memory Usage: 15.8 MB, less than 13.25%
+    Memory Usage: 14.0 MB, less than 95.45%
     """
 
     def smallestFromLeaf(self, root: TreeNode) -> List[str]:
