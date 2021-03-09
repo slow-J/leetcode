@@ -1,16 +1,16 @@
-# WIP, passes only first test case :(
+from collections import defaultdict
+from heapq import nlargest
+
+# WIP, still only passes first test case :(
 # V2: much more efficient, but still TLE for test set 2
 def get_diffs_and_max(exercise_mins):
-    diffs = {}
+    diffs = defaultdict(int)
     max = 0
     prev = int(exercise_mins[0])
     for mins in exercise_mins[1:]:
         mins = int(mins)
         diff = mins - prev
-        if diff in diffs:
-            diffs[diff] += 1
-        else:
-            diffs[diff] = 1
+        diffs[diff] += 1
         if diff > max:
             max = diff
         prev = mins
@@ -35,19 +35,15 @@ def main():
             K -= occurances
             if K >= 0:
                 del diffs[max_key]
+
                 left_diff = max_key // 2
-                if left_diff in diffs:
-                    diffs[left_diff] += occurances
-                else:
-                    diffs[left_diff] = occurances
+                diffs[left_diff] += occurances
                 # New diffs, right
                 right_diff = max_key - left_diff
-                if right_diff in diffs:
-                    diffs[right_diff] += occurances
-                else:
-                    diffs[right_diff] = occurances
+                diffs[right_diff] += occurances
 
-                max_key = max(diffs)
+                # max_key = max(diffs)
+                max_key = nlargest(1, diffs)[0]
 
         # ANS is the biggest diff between consecutive numbers
         print(f"Case #{i+1}: {max_key}")
