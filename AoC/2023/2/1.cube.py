@@ -19,7 +19,7 @@ def main(file_path):
             top_green = 0
             top_red = 0
 
-            for group in line.strip("\n").split(": ")[1].split("; "):
+            for group in line.rstrip("\n").split(": ")[1].split("; "):
                 # print(group)
                 for elem in group.split(", "):
                     val, col = elem.split(" ")
